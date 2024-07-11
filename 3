@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int p;
+
+    printf("Введіть кількість розрядів (p ≤ 30): ");
+    scanf("%d", &p);
+    
+    if (p == 1) {
+        printf("Кількість можливих чисел: 2\n");
+        return 0;
+    }
+
+    int a[31], b[31];
+    a[1] = 2; // 5, 9
+    b[1] = 0;
+
+    for (int i = 2; i <= p; i++) {
+        a[i] = b[i-1];
+        b[i] = a[i-1] + b[i-1];
+    }
+
+    int result = a[p] + b[p];
+    printf("Кількість можливих чисел: %d\n", result);
+
+    return 0;
+}
